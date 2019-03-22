@@ -1,3 +1,3 @@
 defmodule StatikWeb.PageView do
-  use StatikWeb, :view
+  use StatikWeb, :nested_view
 end

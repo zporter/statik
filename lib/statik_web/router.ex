@@ -17,6 +17,7 @@ defmodule StatikWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
+    get "/*path", PageController, :show
   end
 
   # Other scopes may use custom stacks.

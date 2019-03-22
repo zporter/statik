@@ -27,11 +27,16 @@ defmodule StatikWeb do
     end
   end
 
-  def view do
-    quote do
-      use Phoenix.View,
+  def view(options \\ []) do
+    options =
+      [
         root: "lib/statik_web/templates",
         namespace: StatikWeb
+      ]
+      |> Keyword.merge(options)
+
+    quote do
+      use Phoenix.View, unquote(options)
 
       # Import convenience functions from controllers
       import Phoenix.Controller, only: [get_flash: 1, get_flash: 2, view_module: 1]
@@ -43,6 +48,10 @@ defmodule StatikWeb do
       import StatikWeb.Gettext
       alias StatikWeb.Router.Helpers, as: Routes
     end
+  end
+
+  def nested_view do
+    view(pattern: "**/*")
   end
 
   def router do
